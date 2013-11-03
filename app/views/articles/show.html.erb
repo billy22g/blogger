@@ -1,5 +1,16 @@
 <h1><%= @article.title %></h1>
+
 <p><%= @article.body %></p><br/>
+<% if @article.tags.count != 0 %>
+  <p>
+    Tags:
+    <% @article.tags.each do |tag| %>
+      <%= link_to tag.name, tag_path(tag) %>
+    <% end %>
+  </p>
+<% else %>
+  <p>Tags: None</p>
+<% end %>
 
 <h3><%= @article.comments.count %> Comments </h3>
 <%= render partial: "articles/comment", collection: @article.comments %><br/>
